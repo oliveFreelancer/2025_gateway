@@ -1,0 +1,129 @@
+@import "tailwindcss";
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+/* 폰트 kym 2026*/
+
+@font-face {
+  font-family: "Pretendard-Regular";
+  src: url("/fonts/Pretendard-Regular.otf");
+}
+
+@font-face {
+  font-family: "Pretendard-Bold";
+  src: url("/fonts/Pretendard-Bold.otf");
+}
+
+@font-face {
+  font-family: "Paperlogy-4Regular";
+  src: url("/fonts/Paperlogy-4Regular.woff2");
+}
+
+@font-face {
+  font-family: "Paperlogy-7Bold";
+  src: url("/fonts/Paperlogy-7Bold.woff2");
+}
+
+@font-face {
+  font-family: "Paperlogy-8ExtraBold";
+  src: url("/fonts/Paperlogy-8ExtraBold.woff2");
+}
+
+* {
+  box-sizing: border-box;
+  font-family: "Pretendard-Regular";
+  font-weight: normal;
+}
+
+.font-title {
+  font-family: "Pretendard-Bold";
+}
+
+.paperlogy-reg {
+  font-family: "Paperlogy-4Regular";
+}
+
+.paperlogy-bold {
+  font-family: "Paperlogy-7Bold";
+}
+
+.paperlogy-ultra {
+  font-family: "Paperlogy-8ExtraBold";
+}
+
+/* 세부 라이트 다크모드 kym 2026*/
+@custom-variant dark (&:where(.dark, .dark *));
+
+/* 스타일 kym 2026*/
+.glow-shadow {
+  filter: drop-shadow(0 0 8px rgba(236, 0, 63, 0.5));
+}
+
+.glow-text {
+  text-shadow: 0 0 10px rgba(255, 255, 255, 0.7);
+}
+
+.overflow-x-scroll {
+  scrollbar-color: rgb(64, 69, 77) transparent;
+  scrollbar-width: thin;
+}
+
+/* 재사용 컴퍼넌트 kym 2026*/
+@layer components {
+  .card {
+    @apply rounded-xl p-6 bg-rose-500 dark:bg-zinc-100;
+  }
+
+  .text-title {
+    @apply text-stone-100  dark:text-zinc-900;
+  }
+
+  .text-notice {
+    @apply text-stone-50 dark:text-zinc-400;
+  }
+}
+
+/* 프로젝트 : scroll trigger 1*/
+.text-gradient-1 {
+  background: linear-gradient(90deg, #1432f5, #00edaa);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+}
+
+.floating {
+  animation: floatUpDown 2s ease-in-out infinite;
+}
+
+@keyframes floatUpDown {
+  0% {
+    transform: translateY(0);
+  }
+  50% {
+    transform: translateY(-10px); /* 위로 뜨기 */
+  }
+  100% {
+    transform: translateY(0);
+  }
+}
+
+.sparkle-star {
+  animation: spin 2s linear infinite;
+  transition: transform 0.3s;
+  display: inline-block;
+}
+
+@keyframes spin {
+  0% {
+    transform: rotate(0deg) scale(0);
+    opacity: 0;
+  }
+  50% {
+    transform: rotate(180deg) scale(1);
+    opacity: 1;
+  }
+  100% {
+    transform: rotate(360deg) scale(0);
+    opacity: 0;
+  }
+}
