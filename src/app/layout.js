@@ -18,15 +18,26 @@ export default function RootLayout({ children }) {
   const shouldSkipSmoothWrapper = pathname?.includes("pj");
 
   return (
-    <html lang="ko" className="dark">
-      <body>
+    <html lang="ko">
+      <body
+        className="
+          min-h-screen
+          bg-gradient-to-b from-neutral-50 to-neutral-200
+          text-neutral-700
+          dark:from-neutral-800 dark:to-neutral-950 dark:text-neutral-200
+          antialiased
+          transition-colors duration-300
+        "
+        // z-shortcut-listen="true"
+      >
         {isClient && (
           <ThemeProvider attribute="class" defaultTheme="system" enableSystem>
             {shouldSkipSmoothWrapper ? (
               children
             ) : (
               <>
-                <ThemeSwitcher /> <SmoothWrapper> {children}</SmoothWrapper>
+                <ThemeSwitcher />
+                <SmoothWrapper>{children}</SmoothWrapper>
               </>
             )}
           </ThemeProvider>

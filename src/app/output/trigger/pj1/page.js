@@ -5,6 +5,8 @@ import Link from "next/link";
 import gsap from "gsap";
 import { ScrollTrigger } from "gsap/ScrollTrigger";
 gsap.registerPlugin(ScrollTrigger);
+//components kym
+import RightSideNav from "@/components/RightSideNav";
 
 export default function Home() {
   const animation1Ref = useRef(null);
@@ -13,8 +15,15 @@ export default function Home() {
   const animation4Ref = useRef(null);
   const animation5Ref = useRef(null);
   const animation6Ref = useRef(null);
-  const animation7Ref = useRef(null);
-  const animation8Ref = useRef(null);
+  const maskRef = useRef(null);
+  // const animation7Ref = useRef(null);
+  // const animation8Ref = useRef(null);
+  const animation9Ref = useRef(null);
+  const animation10Ref = useRef(null);
+  const animation11Ref = useRef(null);
+  const animation12Ref = useRef(null);
+  const animation13Ref = useRef(null);
+  const animation14Ref = useRef(null);
 
   //애니메이션
   useEffect(() => {
@@ -24,7 +33,7 @@ export default function Home() {
       ease: "power2.out",
       scrollTrigger: {
         trigger: animation1Ref.current,
-        start: "top top+=200",
+        start: "top center",
         end: "top center",
         // scrub: 0.5,
         // markers: true,
@@ -82,38 +91,126 @@ export default function Home() {
         // markers: true,
       },
     });
-    gsap.to(animation6Ref.current, {
+
+    const el6 = animation6Ref.current;
+
+    const tl = gsap.timeline({
+      scrollTrigger: {
+        trigger: el6,
+        start: "top bottom-=200",
+        end: "bottom-=200 center",
+        scrub: 0.5,
+        // markers: true,
+        // onLeave: () => {
+        //   gsap.set(el6, { display: "none" });
+        // },
+        // onEnterBack: () => {
+        //   gsap.set(el6, { display: "block" });
+        // },
+      },
+    });
+
+    tl.to(el6, {
+      opacity: 1,
+      duration: 0.5,
+      ease: "power2.out",
+    }).to(el6, {
+      opacity: 0,
+      duration: 0.5,
+      ease: "power2.in",
+    });
+
+    gsap.to(
+      { size: 50 },
+      {
+        size: 300,
+        scrollTrigger: {
+          trigger: maskRef.current,
+          start: "top top+=200",
+          end: "bottom center",
+          scrub: 0.5,
+          // markers: true,
+          onLeave: () => {
+            gsap.set(maskRef, { display: "none" });
+          },
+          onEnterBack: () => {
+            gsap.set(maskRef, { display: "block" });
+          },
+        },
+        onUpdate: function () {
+          const size = this.targets()[0].size;
+          const value = `${size}% ${size}%`;
+          maskRef.current.style.maskSize = value;
+          maskRef.current.style.webkitMaskSize = value;
+        },
+      }
+    );
+
+    gsap.to(animation9Ref.current, {
+      scale: 7,
       opacity: 1,
       duration: 1.2,
       ease: "power2.out",
       scrollTrigger: {
-        trigger: animation6Ref.current,
+        trigger: animation9Ref.current,
         start: "top center",
-        end: "top center",
-        // scrub: 0.5,
+        end: "bottom center",
+        scrub: 0.5,
         // markers: true,
       },
     });
-    gsap.to(animation7Ref.current, {
-      left: 50,
+    gsap.to(animation10Ref.current, {
+      width: 0,
       duration: 1.2,
       ease: "power2.out",
       scrollTrigger: {
-        trigger: animation7Ref.current,
-        start: "top center",
-        end: "top center",
-        scrub: true,
-        markers: true,
+        trigger: animation10Ref.current,
+        start: "top bottom-=200",
+        end: "top top+=200",
+        scrub: 0.5,
+        // markers: true,
       },
     });
-    gsap.to(animation8Ref.current, {
-      right: 50,
-      duration: 1.2,
+    gsap.to(animation11Ref.current, {
+      rotateX: -6,
       ease: "power2.out",
       scrollTrigger: {
-        trigger: animation8Ref.current,
-        start: "top center",
-        end: "top center",
+        trigger: animation11Ref.current,
+        start: "top top+=200",
+        end: "bottom top+=100",
+        scrub: 0.5,
+        // markers: true,
+      },
+    });
+    gsap.to(animation12Ref.current, {
+      rotateX: -6,
+      ease: "power2.out",
+      scrollTrigger: {
+        trigger: animation12Ref.current,
+        start: "top top+=200",
+        end: "bottom top+=100",
+        scrub: 0.5,
+        // markers: true,
+      },
+    });
+    gsap.to(animation13Ref.current, {
+      rotateX: -6,
+      ease: "power2.out",
+      scrollTrigger: {
+        trigger: animation13Ref.current,
+        start: "top top+=200",
+        end: "bottom top+=100",
+        scrub: 0.5,
+        // markers: true,
+      },
+    });
+    gsap.to(animation14Ref.current, {
+      rotateX: -6,
+      ease: "power2.out",
+      scrollTrigger: {
+        trigger: animation14Ref.current,
+        start: "top top+=200",
+        end: "bottom top+=100",
         scrub: 0.5,
         // markers: true,
       },
@@ -122,20 +219,7 @@ export default function Home() {
 
   return (
     <main className="paperlogy-reg bg-white text-black">
-      <div className="fixed bottom-[16px] right-[16px] flex gap-2 text-xs">
-        <span className="px-4 py-2 rounded-full border bg-rose-500 text-white">
-          앱 다운로드 홍보페이지
-        </span>
-        <span className="px-4 py-2 rounded-full border bg-rose-500 text-white">
-          코인 투자 마케팅
-        </span>
-        <span className="px-4 py-2 rounded-full border bg-rose-500 text-white">
-          스크롤 트리거 애니메이션
-        </span>
-        <span className="px-4 py-2 rounded-full border bg-rose-500 text-white">
-          스크롤 웹
-        </span>
-      </div>
+      <RightSideNav />
       <div className="p-4 flex items-center justify-between">
         <h1>
           <strong className="paperlogy-ultra text-gradient-1 text-gray-300 text-4xl">
@@ -166,7 +250,7 @@ export default function Home() {
       <section>
         <div
           ref={animation1Ref}
-          className="mt-[200px] paperlogy-reg text-8xl text-center leading-[1.2] border border-red-600"
+          className="mt-[200px] paperlogy-reg text-8xl text-center leading-[1.2] max-lg:mt-[100px]"
         >
           당신의 비트코인, <br /> 더 똑똑하게 움직이는 <br />
           <strong className="paperlogy-ultra text-gradient-1">
@@ -176,7 +260,7 @@ export default function Home() {
         <div className="mx-auto flex justify-center gap-10 w-1/2">
           <div
             ref={animation2Ref}
-            className="relative -left-[100px] p-4 w-[400px] border border-gray-300 bg-black rounded-xl shadow-xl scale-[0.7] border border-red-600 opacity-0"
+            className="relative -left-[100px] p-4 w-[400px] border border-gray-300 bg-black rounded-xl shadow-xl scale-[0.7] opacity-0"
           >
             <div>
               <Image
@@ -191,7 +275,7 @@ export default function Home() {
           </div>
           <div
             ref={animation3Ref}
-            className="relative left-[100px] p-4 w-[400px] border border-gray-300 bg-black rounded-xl shadow-xl scale-[0.7] border border-red-600 opacity-0"
+            className="relative left-[100px] p-4 w-[400px] border border-gray-300 bg-black rounded-xl shadow-xl scale-[0.7] opacity-0"
           >
             <div>
               <Image
@@ -207,8 +291,8 @@ export default function Home() {
         </div>
       </section>
       <section className="py-[300px] text-center">
-        <div className="relative inline-block mb-6 border border-red-800">
-          <h2 className="paperlogy-reg text-6xl text-center whitespace-normal">
+        <div className="relative inline-block mb-6">
+          <h2 className="paperlogy-reg text-6xl text-center whitespace-normal max-lg:text-4xl">
             투자자들이 가장 신뢰하는 핵심 기능들을 담았습니다.
           </h2>
           <div
@@ -217,8 +301,8 @@ export default function Home() {
           ></div>
         </div>
         <br />
-        <div className="relative inline-block mb-6 border border-red-800">
-          <h2 className="paperlogy-reg text-6xl text-center whitespace-normal">
+        <div className="relative inline-block mb-6">
+          <h2 className="paperlogy-reg text-6xl text-center whitespace-normal max-lg:text-4xl">
             시세는 1초도 늦을 수 없죠!
           </h2>
           <div
@@ -235,7 +319,7 @@ export default function Home() {
             xmlns="http://www.w3.org/2000/svg"
             className="floating absolute left-1/2 -translate-x-1/2"
           >
-            <g clip-path="url(#clip0_888_160)">
+            <g clipPath="url(#clip0_888_160)">
               <path
                 d="M172.795 344C168.833 344 165.625 340.798 165.625 336.84V7.17047C165.625 3.21234 168.832 0 172.795 0C176.754 0 179.961 3.21234 179.961 7.17047V336.84C179.961 340.798 176.753 344 172.795 344Z"
                 fill="#424953"
@@ -315,36 +399,41 @@ export default function Home() {
       </section>
       <section
         ref={animation6Ref}
-        className="sticky top-0 h-screen bg-black opacity-0 border border-red-500"
+        className="relative h-[2000px] opacity-0 bg-black"
       >
-        <div className="relative py-[300px] h-full border border-red-500">
-          <p
-            ref={animation7Ref}
-            className="absolute left-1/2 pl-4 paperlogy-bold text-6xl text-blue-700 border border-red-500"
-          >
-            내 자산은 내가 지켜
-          </p>
-          <div className="absolute">
-            <div>d</div>
-            <div></div>
-          </div>
-          <p
-            ref={animation8Ref}
-            className="absolute right-1/2 paperlogy-bold text-6xl text-white border border-red-500"
-          >
-            업계 최고 보안 아키텍처
-          </p>
+        <div
+          ref={maskRef}
+          className="sticky top-0 w-full h-screen mask-no-repeat mask-center mask-[url(/images/BLOCK.svg)] w-full h-full bg-black"
+          style={{
+            maskSize: "50% 50%",
+            WebkitMaskSize: "50% 50%",
+          }}
+        >
+          <Image
+            src="/images/trigger-img4.jpg"
+            alt="아이콘"
+            width={0} // 동적으로 조정
+            height={0}
+            sizes="100%"
+            className="w-full h-auto"
+          />
         </div>
       </section>
-      <section>
+      <section className="p-[200px] max-2xl:px-[100px]">
         <div className="flex items-center justify-between">
-          <p className="flex-1 paperlogy-reg text-6xl text-left leading-[1.2]">
-            <strong className="bg-blue-700 text-white">
+          <p className="flex-1 paperlogy-reg text-6xl text-left leading-[1.2] max-lg:text-4xl">
+            <strong className="bg-blue-700 text-white paperlogy-bold">
               수천 명의 투자자들과 포지션 공유
             </strong>
-            , 실시간 전략 토론, 베스트 트레이더 팔로우 기능까지. 비트코인은
-            개인의 자산이지만, 투자는{" "}
-            <strong className="bg-blue-700 text-white">팀 스포츠</strong>
+            <br />
+            실시간 전략 토론, 베스트 트레이더 <br />
+            팔로우 기능까지.
+            <br />
+            비트코인은 개인의 자산이지만, <br />
+            투자는
+            <strong className="bg-blue-700 text-white paperlogy-bold">
+              팀 스포츠
+            </strong>
             입니다.
           </p>
           <svg
@@ -353,9 +442,9 @@ export default function Home() {
             viewBox="0 0 345 344"
             fill="none"
             xmlns="http://www.w3.org/2000/svg"
-            className="flex-1"
+            className="flex-1 floating"
           >
-            <g clip-path="url(#clip0_888_151)">
+            <g clipPath="url(#clip0_888_151)">
               <path
                 d="M309.956 125.389C309.956 125.389 257.844 97.1593 220.44 110.418C197.512 118.544 185.503 143.707 193.596 166.646C201.753 189.552 226.928 201.531 249.866 193.405C287.26 180.146 309.956 125.389 309.956 125.389Z"
                 fill="#A0D468"
@@ -403,27 +492,45 @@ export default function Home() {
         </div>
       </section>
       <section>
-        <div className="mx-auto w-1/2 text-center">
-          <h3 className="paperlogy-ultra text-6xl text-blue-700">
-            당신에게 필요한 투자 서비스
-          </h3>
+        <div className="mx-auto flex flex-col justify-center w-1/2 h-[900px] text-center">
+          <div className="relative inline-block mb-6">
+            <h2 className="paperlogy-ultra text-8xl text-center whitespace-normal max-lg:text-4xl">
+              당신에게 필요한 투자 서비스
+            </h2>
+            <div
+              ref={animation10Ref}
+              className="absolute top-0 right-0 w-full h-full bg-white z-20"
+            ></div>
+          </div>
+
           <p className="paperlogy-reg text-2xl">투자를 쉽게 만들어드립니다.</p>
         </div>
-        <div className="relative h-[400px] mx-auto w-2/3 text-white">
-          <div className="absolute p-12 w-full flex justify-between items-center rounded-xl text-left leading-[1.2] bg-blue-700">
+      </section>
+      <section className="py-12">
+        <div className="relative py-12 perspective-normal mx-auto w-2/3 text-white max-lg:w-5/6">
+          <div
+            ref={animation11Ref}
+            className="sticky top-[100px] p-12 w-full h-[400px] flex justify-between items-center origin-top rotate-x-0 rounded-xl text-left leading-[1.2] bg-blue-700  max-lg:flex-col max-lg:justify-center"
+          >
             <p className="mb-10 paperlogy-bold text-6xl">앱에서 빠르게</p>
             <p className="text-xl">
               스마트폰만 있으면 어디서나 빠르게 계좌를 만들고, 그에 맞는 맞춤형
               혜택도 제안받으세요.
             </p>
           </div>
-          <div className="absolute p-12 w-full flex justify-between items-center rounded-xl text-left leading-[1.2] bg-violet-600">
+          <div
+            ref={animation12Ref}
+            className="sticky top-[120px] p-12 w-full h-[400px] flex justify-between items-center origin-top rotate-x-0 rounded-xl text-left leading-[1.2] bg-violet-600 max-lg:flex-col max-lg:justify-center"
+          >
             <p className="mb-10 paperlogy-bold text-6xl">포트폴리오 분석</p>
             <p className="text-xl">
               투자자들이 가장 신뢰하는 핵심 기능들을 담았으니 쉽게 사용하세요.
             </p>
           </div>
-          <div className="absolute p-12 w-full flex justify-between items-center rounded-xl text-left leading-[1.2] bg-orange-600">
+          <div
+            ref={animation13Ref}
+            className="sticky top-[140px] p-12 w-full h-[400px] flex justify-between items-center origin-top rotate-x-0 rounded-xl text-left leading-[1.2] bg-orange-600 max-lg:flex-col max-lg:justify-center"
+          >
             <p className="mb-10 paperlogy-bold text-6xl">
               당신의 손끝에서 움직이는 시장
             </p>
@@ -432,7 +539,10 @@ export default function Home() {
               있게 설계했습니다.
             </p>
           </div>
-          <div className="absolute p-12 w-full flex justify-between items-center rounded-xl text-left leading-[1.2] bg-indigo-600">
+          <div
+            ref={animation14Ref}
+            className="sticky top-[160px] p-12 w-full h-[400px] flex justify-between items-center origin-top rotate-x-0 rounded-xl text-left leading-[1.2] bg-indigo-600 max-lg:flex-col max-lg:justify-center"
+          >
             <p className="mb-10 paperlogy-bold text-6xl">
               당신의 코인을 안전하게
             </p>
@@ -443,17 +553,61 @@ export default function Home() {
           </div>
         </div>
       </section>
-      <section>
-        <p className="paperlogy-bold text-6xl text-center">
-          당신의 투자는 지금부터!
-        </p>
-        <p className="paperlogy-bold text-6xl text-center">
-          늦춰지지말고 당장 시작하세요.
-        </p>
-        <p className="paperlogy-bold text-6xl text-center">
-          혼자 투자하지 마세요. 함께 더 강해집니다.
-        </p>
+      <section className="flex flex-col justify-center items-center h-screen">
+        <div className="text-deco-1">
+          <div className="flex gap-4 max-lg:justify-center max-lg:items-end max-lg:gap-0">
+            <h2 className="paperlogy-bold text-9xl max-lg:text-5xl">
+              빠르게 시작하기
+            </h2>
+            <svg
+              width="68"
+              height="67"
+              viewBox="0 0 68 67"
+              fill="none"
+              xmlns="http://www.w3.org/2000/svg"
+              className="max-lg:scale-50 "
+            >
+              <path
+                d="M45.2133 22.2868L2.07974 65.4203"
+                stroke="black"
+                strokeWidth="4"
+                strokeMiterlimit="10"
+              />
+              <path
+                d="M3.49395 21.5797H45.9204V64.0061"
+                stroke="black"
+                strokeWidth="4"
+                strokeMiterlimit="10"
+              />
+            </svg>
+          </div>
+        </div>
       </section>
+      <footer>
+        <div className="p-4">
+          <div className="py-4 flex items-center gap-4 border-b border-gray-300">
+            <h1>
+              <strong className="paperlogy-ultra text-gradient-1 text-gray-300 text-4xl">
+                BlockRift
+              </strong>
+            </h1>
+            <div>
+              <button></button>
+            </div>
+          </div>
+          <div className="py-4 flex justify-between items-center">
+            <ul className="flex items-center gap-4">
+              <li className="cursor-pointer hover:text-bold">
+                개인정보 처리방침
+              </li>
+              <li>고객센터 123-4567</li>
+            </ul>
+            <span className="text-gray-500">
+              2025 Ltd. All Rights Reserved.
+            </span>
+          </div>
+        </div>
+      </footer>
     </main>
   );
 }

@@ -5,7 +5,7 @@ const BASE_URL =
 const SERVICE_KEY = process.env.NEXT_PUBLIC_PUBLICDATA_KEY;
 
 export async function getWeather({ baseDate, nx, ny }) {
-  const url = `${BASE_URL}?serviceKey=${SERVICE_KEY}&pageNo=1&numOfRows=300&dataType=json&base_date=${baseDate}&base_time=0500&nx=55&ny=127`;
+  const url = `${BASE_URL}?serviceKey=${SERVICE_KEY}&pageNo=1&numOfRows=300&dataType=json&base_date=${baseDate}&base_time=0500&nx=${nx}&ny=${ny}`;
 
   try {
     const res = await client.get(url);

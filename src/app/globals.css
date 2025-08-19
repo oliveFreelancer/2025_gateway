@@ -3,6 +3,18 @@
 @tailwind components;
 @tailwind utilities;
 
+@layer utilities {
+  .card-ghost {
+    @apply opacity-50;
+  }
+  .card-chosen {
+    @apply ring-2 ring-indigo-400 ring-offset-2;
+  }
+  .card-drag {
+    @apply cursor-grabbing;
+  }
+}
+
 /* 폰트 kym 2026*/
 
 @font-face {
@@ -69,19 +81,17 @@
   scrollbar-width: thin;
 }
 
-/* 재사용 컴퍼넌트 kym 2026*/
-@layer components {
-  .card {
-    @apply rounded-xl p-6 bg-rose-500 dark:bg-zinc-100;
-  }
+/* 고정 메뉴 */
+.fixed-layout {
+  z-index: 9999;
+}
 
-  .text-title {
-    @apply text-stone-100  dark:text-zinc-900;
-  }
-
-  .text-notice {
-    @apply text-stone-50 dark:text-zinc-400;
-  }
+/*page intro*/
+.intro-bg1 {
+  background-image: url("/images/intro_bg1.png");
+  background-size: cover;
+  background-position: center;
+  background-blend-mode: color-burn;
 }
 
 /* 프로젝트 : scroll trigger 1*/
@@ -126,4 +136,17 @@
     transform: rotate(360deg) scale(0);
     opacity: 0;
   }
+}
+
+.text-deco-1::after {
+  content: "";
+  display: block;
+  width: 0;
+  height: 3px;
+  background-color: #000;
+  transition: width 0.3s ease;
+}
+
+.text-deco-1:hover::after {
+  width: 100%;
 }
