@@ -10,64 +10,19 @@ import Footer from "@/components/Footer";
 
 export default function Home() {
   return (
-    <main className="mx-auto w-2/3">
-      <section className="pt-[200px] pb-[100px] relative text-center">
-        <span className="mx-auto mb-12 rounded-full py-2 px-4 text-rose-500 dark:text-white bg-linear-to-r from-zinc-50 dark:from-zinc-950 to-neutral-200/80 dark:to-neutral-800/50 border border-zinc-100 dark:border-zinc-800 inline-block">
-          스크롤 트리거 프로젝트 모음
-        </span>
-      </section>
-      <section>
-        <ul className="grid grid-cols-4 gap-12">
-          <li>
-            <div>
-              <Link
-                href="/output/trigger/pj1"
-                className="cursor-pointer hover:opacity-90 hover:text-rose-500"
-              >
-                <div className="rounded-md overflow-hidden">
-                  <Image
-                    src="/images/pj_thumb1.png"
-                    alt="이미지"
-                    width={0} // 동적으로 조정
-                    height={0}
-                    sizes="100%"
-                    className="w-full h-auto"
-                  />
-                </div>
-                <div className="py-2 flex items-center justify-between">
-                  <strong className="text-2xl text-bold">BlockRift</strong>
-                  <p className="text-xl text-zinc-400">앱 홍보 웹페이지</p>
-                </div>
-              </Link>
-            </div>
-          </li>
-          <li>
-            <div>
-              <Link
-                href="/output/trigger/pj1"
-                className="cursor-pointer hover:opacity-90 hover:text-rose-500"
-              >
-                <div className="rounded-md overflow-hidden">
-                  <Image
-                    src="/images/pj_thumb1.png"
-                    alt="이미지"
-                    width={0} // 동적으로 조정
-                    height={0}
-                    sizes="100%"
-                    className="w-full h-auto"
-                  />
-                </div>
-                <div className="py-2 flex items-center justify-between">
-                  <strong className="text-2xl text-bold">BlockRift</strong>
-                  <p className="text-xl text-zinc-400">앱 홍보 웹페이지</p>
-                </div>
-              </Link>
-            </div>
-          </li>
-        </ul>
-      </section>
-
-      <Footer />
+    <main className="py-12">
+      {/* 인트로 */}
+      <div className="flex flex-col justify-center h-[600px] text-center text-white intro-bg3">
+        <h1 className="py-2 text-7xl paperlogy-ultra text-white">
+          정적인 화면을 살아있는 경험으로 바꾸는
+          <br />
+          스크롤 트리거 애니메이션 효과를 적용합니다.
+        </h1>
+        <p className="py-2 text-xl">사용자의 시선을 이끌고, 중요한 메시지가</p>
+        <p className="py-2 text-xl">더 강렬하게 전달되도록 설계합니다.</p>
+      </div>
+      {/* 갤러리 */}
+      {/* 슬라이드 */}
     </main>
   );
 }

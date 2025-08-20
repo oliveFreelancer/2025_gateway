@@ -1,9 +1,37 @@
 "use client";
 
 import { useTheme } from "next-themes";
-import { useState } from "react";
+import React, { useEffect, useRef, useState } from "react";
 import Image from "next/image";
 import Link from "next/link";
+import { Swiper, SwiperSlide } from "swiper/react";
+// Import Swiper styles
+import "swiper/css";
+import "swiper/css/pagination";
+import "swiper/css/navigation";
+import { Pagination, Navigation } from "swiper/modules";
+//api
+import { getWeather } from "@/lib/api/getWeather";
+const REGION_COORDS = {
+  서울: { nx: 60, ny: 127 },
+  경기: { nx: 60, ny: 120 },
+  부산: { nx: 98, ny: 76 },
+  대구: { nx: 89, ny: 90 },
+  인천: { nx: 55, ny: 124 },
+  광주: { nx: 58, ny: 74 },
+  대전: { nx: 67, ny: 100 },
+  울산: { nx: 102, ny: 84 },
+  세종: { nx: 69, ny: 107 },
+  충북: { nx: 60, ny: 120 },
+  충남: { nx: 68, ny: 100 },
+  전북: { nx: 63, ny: 89 },
+  전남: { nx: 51, ny: 67 },
+  경북: { nx: 87, ny: 106 },
+  경남: { nx: 91, ny: 77 },
+  강원도: { nx: 73, ny: 134 },
+  제주: { nx: 52, ny: 38 },
+};
+
 export default function ThemeSwitcher() {
   const { theme, setTheme } = useTheme();
   //우측 설정 패널
@@ -12,6 +40,57 @@ export default function ThemeSwitcher() {
   const [openLeftIntro, setOpenLeftIntro] = useState(false);
   const [openLeftWeather, setOpenLeftWeather] = useState(false);
   const [openLeftSlider, setOpenLeftSlider] = useState(false);
+  //날씨
+  const [selectedRegion, setSelectedRegion] = useState("서울");
+  const [weather, setWeather] = useState([]);
+
+  const today = new Date();
+  const baseDate = today.toISOString().slice(0, 10).replace(/-/g, "");
+  const baseTime = "0600";
+  const { nx, ny } = REGION_COORDS[selectedRegion];
+
+  const fetchWeather = async () => {
+    const result = await getWeather({ baseDate, baseTime, nx, ny });
+
+    if (result?.response?.body?.items?.item) {
+      const filteredList = result.response.body.items.item.filter(
+        (obj) =>
+          ![
+            "PTY",
+            "PCP",
+            "SNO",
+            "UUU",
+            "VVV",
+            "WAV",
+            "VEC",
+            "WSD",
+            "TMX",
+          ].includes(obj.category)
+      );
+      const todayWeatherList = filteredList.slice(0, 72);
+      console.log(todayWeatherList);
+      setWeather(todayWeatherList);
+    } else {
+      console.error("날씨 데이터가 없습니다.");
+    }
+  };
+
+  useEffect(() => {
+    fetchWeather();
+  }, [selectedRegion]);
+
+  function chunkArray(array, size) {
+    const result = [];
+    for (let i = 0; i < array.length; i += size) {
+      result.push(array.slice(i, i + size));
+    }
+    return result;
+  }
+
+  const handleRegionChange = (e) => {
+    const region = e.target.value;
+    setSelectedRegion(region);
+  };
 
   return (
     <>
@@ -91,7 +170,7 @@ export default function ThemeSwitcher() {
           <div className="mt-auto mb-auto flex flex-col gap-2">
             <button
               onClick={() => setOpenLeftIntro(!openLeftIntro)}
-              className="p-1 cursor-pointer rounded-lg bg-radial-[at_50%_75%] from-sky-200 via-blue-700 to-indigo-600 to-90%"
+              className="p-1 cursor-pointer rounded-lg bg-radial-[at_50%_75%] from-slate-600 via-slate-700 to-slate-200 to-90%"
             >
               <svg
                 width="18"
@@ -111,7 +190,7 @@ export default function ThemeSwitcher() {
             </button>
             <button
               onClick={() => setOpenLeftWeather(!openLeftWeather)}
-              className="p-1 cursor-pointer rounded-lg bg-radial-[at_50%_75%] from-amber-200 via-orange-600 to-yellow-600 to-90%"
+              className="p-1 cursor-pointer rounded-lg bg-radial-[at_50%_75%] from-cyan-400 via-sky-600 to-cyan-200 to-90%"
             >
               <svg
                 width="54"
@@ -161,50 +240,18 @@ export default function ThemeSwitcher() {
             </button>
             <button
               onClick={() => setOpenLeftSlider(!openLeftSlider)}
-              className="p-1 cursor-pointer rounded-lg bg-radial-[at_50%_75%] from-amber-200 via-orange-600 to-yellow-600 to-90%"
+              className="p-1 cursor-pointer rounded-lg bg-radial-[at_50%_75%] from-violet-400 via-indigo-600 to-indigo-400 to-90%"
             >
               <svg
-                width="54"
-                height="54"
-                viewBox="0 0 54 54"
+                width="15"
+                height="15"
+                viewBox="-10 -8 68 68"
                 fill="none"
                 xmlns="http://www.w3.org/2000/svg"
                 className="w-full h-full"
               >
                 <path
-                  d="M27 10.8281C26.3162 10.8281 25.6605 10.5565 25.177 10.073C24.6935 9.58952 24.4219 8.93376 24.4219 8.25V2.625C24.4219 1.94124 24.6935 1.28548 25.177 0.80199C25.6605 0.318498 26.3162 0.046875 27 0.046875C27.6838 0.046875 28.3395 0.318498 28.823 0.80199C29.3065 1.28548 29.5781 1.94124 29.5781 2.625V8.25C29.5781 8.93376 29.3065 9.58952 28.823 10.073C28.3395 10.5565 27.6838 10.8281 27 10.8281Z"
-                  fill="white"
-                />
-                <path
-                  d="M27 53.9531C26.3162 53.9531 25.6605 53.6815 25.177 53.198C24.6935 52.7145 24.4219 52.0588 24.4219 51.375V45.75C24.4219 45.0662 24.6935 44.4105 25.177 43.927C25.6605 43.4435 26.3162 43.1719 27 43.1719C27.6838 43.1719 28.3395 43.4435 28.823 43.927C29.3065 44.4105 29.5781 45.0662 29.5781 45.75V51.375C29.5781 52.0588 29.3065 52.7145 28.823 53.198C28.3395 53.6815 27.6838 53.9531 27 53.9531Z"
-                  fill="white"
-                />
-                <path
-                  d="M40.2586 16.3196C39.7488 16.3195 39.2505 16.1683 38.8266 15.8851C38.4027 15.6019 38.0723 15.1993 37.8772 14.7284C37.682 14.2574 37.6309 13.7392 37.7302 13.2392C37.8295 12.7392 38.0748 12.2798 38.4352 11.9192L42.4125 7.94184C42.8981 7.46886 43.5505 7.20616 44.2283 7.21063C44.9062 7.21509 45.555 7.48635 46.0344 7.96569C46.5137 8.44502 46.785 9.09385 46.7894 9.77172C46.7939 10.4496 46.5312 11.1019 46.0582 11.5875L42.0809 15.5649C41.8418 15.8045 41.5577 15.9945 41.245 16.124C40.9323 16.2535 40.5971 16.32 40.2586 16.3196Z"
-                  fill="white"
-                />
-                <path
-                  d="M9.76409 46.8141C9.25416 46.814 8.7557 46.6627 8.33175 46.3794C7.9078 46.096 7.57741 45.6933 7.38235 45.2221C7.18729 44.751 7.13634 44.2326 7.23592 43.7325C7.33551 43.2323 7.58117 42.773 7.94182 42.4125L11.9192 38.4352C12.1574 38.1906 12.4418 37.9958 12.7559 37.862C13.0701 37.7282 13.4076 37.6582 13.7491 37.6559C14.0905 37.6537 14.4289 37.7193 14.7448 37.8489C15.0606 37.9785 15.3476 38.1696 15.589 38.411C15.8305 38.6524 16.0215 38.9394 16.1511 39.2553C16.2808 39.5711 16.3463 39.9096 16.3441 40.251C16.3418 40.5924 16.2718 40.93 16.138 41.2441C16.0043 41.5582 15.8095 41.8426 15.5649 42.0809L11.5875 46.0582C11.3484 46.2981 11.0642 46.4884 10.7512 46.6181C10.4383 46.7478 10.1028 46.8144 9.76409 46.8141Z"
-                  fill="white"
-                />
-                <path
-                  d="M51.375 29.5781H45.75C45.0662 29.5781 44.4105 29.3065 43.927 28.823C43.4435 28.3395 43.1719 27.6838 43.1719 27C43.1719 26.3162 43.4435 25.6605 43.927 25.177C44.4105 24.6935 45.0662 24.4219 45.75 24.4219H51.375C52.0588 24.4219 52.7145 24.6935 53.198 25.177C53.6815 25.6605 53.9531 26.3162 53.9531 27C53.9531 27.6838 53.6815 28.3395 53.198 28.823C52.7145 29.3065 52.0588 29.5781 51.375 29.5781Z"
-                  fill="white"
-                />
-                <path
-                  d="M8.25 29.5781H2.625C1.94124 29.5781 1.28548 29.3065 0.80199 28.823C0.318498 28.3395 0.046875 27.6838 0.046875 27C0.046875 26.3162 0.318498 25.6605 0.80199 25.177C1.28548 24.6935 1.94124 24.4219 2.625 24.4219H8.25C8.93376 24.4219 9.58952 24.6935 10.073 25.177C10.5565 25.6605 10.8281 26.3162 10.8281 27C10.8281 27.6838 10.5565 28.3395 10.073 28.823C9.58952 29.3065 8.93376 29.5781 8.25 29.5781Z"
-                  fill="white"
-                />
-                <path
-                  d="M44.236 46.814C43.8972 46.8144 43.5617 46.7478 43.2488 46.6181C42.9359 46.4883 42.6517 46.2981 42.4125 46.0582L38.4352 42.0808C37.9622 41.5952 37.6995 40.9429 37.704 40.265C37.7084 39.5871 37.9797 38.9383 38.459 38.459C38.9384 37.9796 39.5872 37.7084 40.2651 37.7039C40.9429 37.6994 41.5953 37.9621 42.0809 38.4351L46.0582 42.4125C46.4189 42.773 46.6645 43.2323 46.7641 43.7324C46.8637 44.2325 46.8128 44.7509 46.6177 45.2221C46.4226 45.6932 46.0922 46.096 45.6683 46.3793C45.2444 46.6627 44.7459 46.814 44.236 46.814Z"
-                  fill="white"
-                />
-                <path
-                  d="M13.7414 16.3196C13.4029 16.3202 13.0676 16.2539 12.7548 16.1244C12.4421 15.9948 12.158 15.8047 11.9191 15.5649L7.94177 11.5875C7.4688 11.1019 7.2061 10.4496 7.21057 9.77172C7.21503 9.09385 7.48629 8.44502 7.96563 7.96569C8.44496 7.48635 9.09379 7.21509 9.77166 7.21063C10.4495 7.20616 11.1019 7.46886 11.5875 7.94184L15.5648 11.9192C15.9251 12.2798 16.1705 12.7392 16.2698 13.2392C16.3691 13.7392 16.318 14.2574 16.1228 14.7284C15.9277 15.1993 15.5973 15.6019 15.1734 15.8851C14.7495 16.1683 14.2512 16.3195 13.7414 16.3196Z"
-                  fill="white"
-                />
-                <path
-                  d="M27 38.9531C24.6359 38.9531 22.3249 38.2521 20.3592 36.9387C18.3935 35.6252 16.8615 33.7584 15.9568 31.5743C15.0521 29.3901 14.8153 26.9867 15.2766 24.6681C15.7378 22.3494 16.8762 20.2195 18.5479 18.5479C20.2195 16.8762 22.3494 15.7378 24.6681 15.2766C26.9867 14.8153 29.3901 15.0521 31.5743 15.9568C33.7584 16.8615 35.6252 18.3935 36.9387 20.3592C38.2521 22.3249 38.9531 24.6359 38.9531 27C38.9494 30.169 37.6889 33.2072 35.448 35.448C33.2072 37.6889 30.169 38.9494 27 38.9531Z"
+                  d="M0 21H21V0H0V21ZM27 0V21H48V0H27ZM0 48H21V27H0V48ZM27 48H48V27H27V48Z"
                   fill="white"
                 />
               </svg>
@@ -259,22 +306,208 @@ export default function ThemeSwitcher() {
             화면 위에서 빛날 수 있도록 함께하겠습니다.
           </p>
           <p>당신의 아이디어 성공을 웹으로 구현합니다!</p>
+          <button className="my-4 px-4 py-2 rounded-4xl text-sm bg-linear-to-r from-emerald-200 to-emerald-400 text-slate-900 paperlogy-bold">
+            <Link href="/intro">작업자 소개</Link>
+          </button>
         </div>
         {/* 좌측 퀵 날씨*/}
         <div
-          className={`w-[400px] h-full p-2 bg-zinc-100 dark:bg-zinc-900 rounded-xl border border-zinc-300 dark:border-zinc-800 ${
+          className={`w-[400px] h-full p-6 bg-zinc-100 dark:bg-zinc-900 rounded-xl border border-zinc-300 dark:border-zinc-800 ${
             openLeftWeather ? "block" : "hidden"
           } `}
         >
-          날씨
+          <div className="overflow-hidden">
+            <div className="pb-4 flex items-start justify-between">
+              <div>
+                <h2 className="text-4xl paperlogy-reg text-neutral-800 dark:text-emerald-500">
+                  오늘 날씨
+                </h2>
+                <span className="text-neutral-400">
+                  {weather.length > 0
+                    ? `${weather[0].fcstDate.slice(
+                        0,
+                        4
+                      )} - ${weather[0].fcstDate.slice(
+                        4,
+                        6
+                      )} - ${weather[0].fcstDate.slice(6, 8)}`
+                    : ""}
+                </span>
+              </div>
+              <div>
+                <label htmlFor="select-region" className="sr-only">
+                  지역 선택
+                </label>
+                <select
+                  id="select-region"
+                  value={selectedRegion}
+                  onChange={handleRegionChange}
+                  className="p-4 border border-neutral-300 dark:border-neutral-800 rounded-md"
+                >
+                  {Object.keys(REGION_COORDS).map((region) => (
+                    <option
+                      key={region}
+                      value={region}
+                      className="bg-zinc-100 dark:bg-zinc-900 border border-zinc-300 dark:border-zinc-800"
+                    >
+                      {region}
+                    </option>
+                  ))}
+                </select>
+              </div>
+            </div>
+            <div className="w-full overflow-hidden">
+              <div className="pb-4 flex gap-6 overflow-x-scroll">
+                {weather.length > 0
+                  ? chunkArray(weather, 4).map((group, index) => {
+                      console.log(group);
+                      return (
+                        <div
+                          key={index}
+                          className="p-4 w-[80px] flex-shrink-0 flex flex-col gap-4 justify-between items-center bg-linear-to-b from-zinc-100 to-zinc-200 dark:from-neutral-800 dark:to-neutral-950 dark:text-white block rounded-xl text-center text-xs"
+                        >
+                          <p className="text-xs text-zinc-400">
+                            {group[0]
+                              ? `${group[0].fcstTime.slice(0, 2)}시`
+                              : "정보 없음"}
+                          </p>
+                          <p>
+                            ☔<br />
+                            <span className="text-xs text-zinc-50">
+                              {group[2] ? group[2].fcstValue : "-"}%
+                            </span>
+                          </p>
+                          <p className="flex flex-col justify-center items-center text-xs">
+                            {group[1] ? (
+                              group[1].fcstValue === "1" ||
+                              group[1].fcstValue === 1 ? (
+                                <span>
+                                  ☀️
+                                  <br />
+                                  맑음
+                                </span>
+                              ) : group[1].fcstValue === "3" ||
+                                group[1].fcstValue === 3 ? (
+                                <span>
+                                  ⛅
+                                  <br />
+                                  구름 많음
+                                </span>
+                              ) : group[1].fcstValue === "4" ||
+                                group[1].fcstValue === 4 ? (
+                                <span>
+                                  🌥
+                                  <br />
+                                  흐림
+                                </span>
+                              ) : (
+                                "❓"
+                              )
+                            ) : (
+                              "-"
+                            )}
+                          </p>
+                          <p>
+                            💧
+                            <br />
+                            {group[3] ? group[3].fcstValue : "-"} %
+                          </p>
+                          <p>
+                            🌡️
+                            <br />
+                            {group[0] ? group[0].fcstValue : "-"} &deg;
+                          </p>
+                        </div>
+                      );
+                    })
+                  : "now loading ..."}
+              </div>
+            </div>
+            <p className="py-3 text-sm text-right">출처: 공공데이터포털 </p>
+          </div>
         </div>
-        {/* 좌측 퀵 슬라이드*/}
+        {/* 좌측 퀵 프로젝트 슬라이드*/}
         <div
           className={`w-[400px] h-full p-2 bg-zinc-100 dark:bg-zinc-900 rounded-xl border border-zinc-300 dark:border-zinc-800 ${
             openLeftSlider ? "block" : "hidden"
           } `}
         >
-          슬라이드
+          <Swiper
+            slidesPerView={1}
+            spaceBetween={30}
+            loop={true}
+            pagination={{
+              clickable: true,
+            }}
+            navigation={true}
+            modules={[Pagination, Navigation]}
+            className="mySwiper"
+          >
+            <SwiperSlide>
+              <div className="relative h-[600px]">
+                <Image
+                  src="/images/sideSlide2.png"
+                  alt="아이콘"
+                  width={0} // 동적으로 조정
+                  height={0}
+                  sizes="100%"
+                  className="absolute w-auto h-full"
+                />
+                <div className="absolute bg-black/70 top-0 left-0 bottom-0 right-0"></div>
+                <div className="absolute top-1/2 -translate-y-1/2 w-full text-white text-center text-lg">
+                  기업 홈페이지 맞춤 제작
+                </div>
+              </div>
+            </SwiperSlide>
+            <SwiperSlide>
+              <div className="relative h-[600px]">
+                <Image
+                  src="/images/sideSlide2.png"
+                  alt="아이콘"
+                  width={0} // 동적으로 조정
+                  height={0}
+                  sizes="100%"
+                  className="absolute w-auto h-full"
+                />
+                <div className="absolute bg-black/70 top-0 left-0 bottom-0 right-0"></div>
+                <div className="absolute top-1/2 -translate-y-1/2 w-full text-white text-center text-lg">
+                  앱 홍보 랜딩페이지 맞춤 제작
+                </div>
+              </div>
+            </SwiperSlide>
+            <SwiperSlide>
+              <div className="relative h-[600px]">
+                <Image
+                  src="/images/sideSlide2.png"
+                  alt="아이콘"
+                  width={0} // 동적으로 조정
+                  height={0}
+                  sizes="100%"
+                  className="absolute w-auto h-full"
+                />
+                <div className="absolute bg-black/70 top-0 left-0 bottom-0 right-0"></div>
+                <div className="absolute top-1/2 -translate-y-1/2 w-full text-white text-center text-lg">
+                  소식지, 뉴스레터 제작 개발
+                </div>
+              </div>
+            </SwiperSlide>
+            <SwiperSlide>
+              <div className="relative h-[600px]">
+                <Image
+                  src="/images/sideSlide2.png"
+                  alt="아이콘"
+                  width={0} // 동적으로 조정
+                  height={0}
+                  sizes="100%"
+                  className="absolute w-auto h-full"
+                />
+                <div className="absolute bg-black/70 top-0 left-0 bottom-0 right-0"></div>
+                <div className="absolute top-1/2 -translate-y-1/2 w-full text-white text-center text-lg">
+                  기업 제안서, PPT 디자인 제작
+                </div>
+              </div>
+            </SwiperSlide>
+          </Swiper>
         </div>
       </div>
 
@@ -320,7 +553,7 @@ export default function ThemeSwitcher() {
             <p>페이지에 다크 모드 적용</p>
             <button
               onClick={() => setTheme(theme === "dark" ? "light" : "dark")}
-              className="px-4 py-2 rounded-4xl text-sm bg-linear-to-r from-emerald-200 to-emerald-400"
+              className="px-4 py-2 rounded-4xl text-sm bg-linear-to-r from-emerald-200 to-emerald-400 text-slate-900 paperlogy-bold"
             >
               {theme === "dark" ? "활성" : "비활성"}
             </button>
@@ -331,13 +564,34 @@ export default function ThemeSwitcher() {
         </div>
         <ul className="py-4 flex flex-col gap-3">
           <li>
-            <Link href="/intro">작업자 소개</Link>
+            <Link href="/intro" className="hover:text-emerald-300">
+              작업자 소개
+            </Link>
           </li>
           <li>
-            <Link href="/intro">작업자 소개</Link>
+            <Link href="/output/smooth" className="hover:text-emerald-300">
+              부드러운 스크롤 홈페이지 UXUI 제작
+            </Link>
           </li>
           <li>
-            <Link href="/intro">작업자 소개</Link>
+            <Link href="/output/trigger" className="hover:text-emerald-300">
+              스크롤 트리거 애니메이션 웹UXUI 제작
+            </Link>
+          </li>
+          <li>
+            <Link href="/output/dashboard" className="hover:text-emerald-300">
+              대시보드 웹 UIUX 제작
+            </Link>
+          </li>
+          <li>
+            <Link href="/output/newletter" className="hover:text-emerald-300">
+              이메일, 소식지, 뉴스레터 제작
+            </Link>
+          </li>
+          <li>
+            <Link href="/output/motionmv" className="hover:text-emerald-300">
+              2D 모션그래픽 동영상 제작
+            </Link>
           </li>
         </ul>
       </div>

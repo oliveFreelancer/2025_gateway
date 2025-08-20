@@ -86,9 +86,25 @@
   z-index: 9999;
 }
 
-/*page intro*/
+/*페이지: intro*/
 .intro-bg1 {
   background-image: url("/images/intro_bg1.png");
+  background-size: cover;
+  background-position: center;
+  background-blend-mode: color-burn;
+}
+
+/*페이지: trigger*/
+.intro-bg3 {
+  background-image: url("/images/intro_bg3.png");
+  background-size: cover;
+  background-position: center;
+  background-blend-mode: color-burn;
+}
+
+/*페이지: smooth*/
+.intro-bg2 {
+  background-image: url("/images/intro_bg2.png");
   background-size: cover;
   background-position: center;
   background-blend-mode: color-burn;
