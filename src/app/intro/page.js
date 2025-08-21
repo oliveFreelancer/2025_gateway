@@ -8,9 +8,6 @@ import "swiper/css/pagination";
 import "swiper/css/navigation";
 import { Autoplay } from "swiper/modules";
 
-//components kym
-import Footer from "@/components/Footer";
-
 export default function Home() {
   return (
     <main className="py-12">
@@ -35,14 +32,14 @@ export default function Home() {
         </p>
       </div>
       {/* 채팅입력창처럼 - 나한테 바로 이메일 오게 */}
-      <div className="py-12 text-center">
+      <div className="py-[100px] text-center">
         <h1 className="pb-6  text-4xl paperlogy-ultra">
           원하는 것을 물어보세요.
         </h1>
         <div></div>
       </div>
       {/* 고객 슬라이드 */}
-      <div className="py-12 text-center">
+      <div className="py-[100px] text-center">
         <h1 className="text-4xl paperlogy-ultra">
           2018년부터 ... 저를 믿어주신 30여개의 고객사들,
         </h1>
@@ -379,7 +376,87 @@ export default function Home() {
       </div>
 
       {/* 작업 범위 */}
-
+      <div className="py-[100PX] intro-bg4">
+        <div className="mx-auto pb-4 w-2/3 flex gap-4 auto-rows-max">
+          <div className="flex-1 h-[382px] transition-all duration-300 hover:basis-[20%] bg-conic from-neutrual-600/50 to-neutrual-400/50 to-50% backdrop-blur-lg rounded-2xl shadow-xl/10">
+            <div className="flex flex-col items-start justify-between p-10 w-full h-full">
+              <p className="p-4 rounded-full border border-emerald-500">
+                UXUI DESIGN
+              </p>
+              <div className="flex flex-col gap-4">
+                <h3 className="text-2xl paperlogy-bold">
+                  웹사이트, 홈페이지, 홍보페이지, 랜딩페이지 UXUI 디자인 제작
+                </h3>
+                <button className="w-full py-6 rounded-4xl text-sm bg-linear-to-r from-emerald-200 to-emerald-400 text-slate-900 paperlogy-bold">
+                  탐험하기
+                </button>
+              </div>
+            </div>
+          </div>
+          <div className="flex-1 h-[382px] transition-all duration-300 hover:basis-[20%] bg-conic from-neutrual-600/50 to-neutrual-400/50 to-50% backdrop-blur-lg rounded-2xl shadow-xl/10">
+            <div className="flex flex-col items-start justify-between p-10 w-full h-full">
+              <p className="p-4 rounded-full border border-emerald-500">
+                UXUI DEV
+              </p>
+              <div className="flex flex-col gap-4">
+                <h3 className="text-2xl paperlogy-bold">
+                  웹사이트, 홈페이지, 홍보페이지, 랜딩페이지 UXUI 프론트 구현
+                </h3>
+                <button className="w-full py-6 rounded-4xl text-sm bg-linear-to-r from-emerald-200 to-emerald-400 text-slate-900 paperlogy-bold">
+                  탐험하기
+                </button>
+              </div>
+            </div>
+          </div>
+          <div className="flex-1 h-[382px] transition-all duration-300 hover:basis-[20%] bg-conic from-neutrual-600/50 to-neutrual-400/50 to-50% backdrop-blur-lg rounded-2xl shadow-xl/10">
+            <div className="flex flex-col items-start justify-between p-10 w-full h-full">
+              <p className="p-4 rounded-full border border-emerald-500">
+                Email / eDM DEV
+              </p>
+              <div className="flex flex-col gap-4">
+                <h3 className="text-2xl paperlogy-bold">
+                  소식지, 뉴스레터, 이메일 디자인·개발
+                </h3>
+                <button className="w-full py-6 rounded-4xl text-sm bg-linear-to-r from-emerald-200 to-emerald-400 text-slate-900 paperlogy-bold">
+                  탐험하기
+                </button>
+              </div>
+            </div>
+          </div>
+        </div>
+        <div className="mx-auto pb-4 w-2/3 flex gap-4 auto-rows-max">
+          <div className="flex-1 h-[382px] transition-all duration-300 hover:basis-[20%] bg-conic from-neutrual-600/50 to-neutrual-400/50 to-50% backdrop-blur-lg rounded-2xl shadow-xl/10">
+            <div className="flex flex-col items-start justify-between p-10 w-full h-full">
+              <p className="p-4 rounded-full border border-emerald-500">
+                PPT DESIGN
+              </p>
+              <div className="flex flex-col gap-4">
+                <h3 className="text-2xl paperlogy-bold">
+                  제안서 계획안 PPT 디자인 제작
+                </h3>
+                <button className="w-full py-6 rounded-4xl text-sm bg-linear-to-r from-emerald-200 to-emerald-400 text-slate-900 paperlogy-bold">
+                  탐험하기
+                </button>
+              </div>
+            </div>
+          </div>
+          <div className="flex-1 h-[382px] transition-all duration-300 hover:basis-[20%] bg-conic from-neutrual-600/50 to-neutrual-400/50 to-50% backdrop-blur-lg rounded-2xl shadow-xl/10">
+            <div className="flex flex-col items-start justify-between p-10 w-full h-full">
+              <p className="p-4 rounded-full border border-emerald-500">
+                2D motiongraphic
+              </p>
+              <div className="flex flex-col gap-4">
+                <h3 className="text-2xl paperlogy-bold">
+                  2D 모션그래픽 홍보영상 애니메이션 제작
+                </h3>
+                <button className="w-full py-6 rounded-4xl text-sm bg-linear-to-r from-emerald-200 to-emerald-400 text-slate-900 paperlogy-bold">
+                  탐험하기
+                </button>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
       {/* 연락 */}
     </main>
   );

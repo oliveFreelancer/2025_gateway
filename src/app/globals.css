@@ -48,6 +48,15 @@
   font-weight: normal;
 }
 
+button {
+  cursor: pointer;
+  transition: all ease 0.5s;
+}
+
+button:hover {
+  opacity: 0.7;
+}
+
 .font-title {
   font-family: "Pretendard-Bold";
 }
@@ -94,6 +103,12 @@
   background-blend-mode: color-burn;
 }
 
+.intro-bg4 {
+  background-image: url("/images/intro_bg4.png");
+  background-size: cover;
+  background-position: center;
+}
+
 /*페이지: trigger*/
 .intro-bg3 {
   background-image: url("/images/intro_bg3.png");
@@ -107,6 +122,30 @@
   background-image: url("/images/intro_bg2.png");
   background-size: cover;
   background-position: center;
+  background-blend-mode: color-burn;
+}
+
+/*페이지: dashboard*/
+.intro-bg5 {
+  background-image: url("/images/intro_bg5.png");
+  background-size: cover;
+  background-position: center;
+  background-blend-mode: color-burn;
+}
+
+/*페이지: newletter*/
+.intro-bg6 {
+  background-image: url("/images/intro_bg6.png");
+  background-size: cover;
+  background-position: center;
+  background-blend-mode: color-burn;
+}
+
+/*페이지: motiongraphic*/
+.intro-bg7 {
+  background-image: url("/images/intro_bg7.png");
+  background-size: cover;
+  background-position: center bottom;
   background-blend-mode: color-burn;
 }
 

@@ -9,14 +9,14 @@ export default function Home() {
   return (
     <main className="py-12">
       {/* 인트로 */}
-      <div className="flex flex-col justify-center h-[600px] text-center text-white intro-bg3">
+      <div className="flex flex-col justify-center h-[600px] text-center text-white intro-bg6">
         <h1 className="py-2 text-7xl paperlogy-ultra text-white">
-          정적인 화면을 살아있는 경험으로 바꾸는
+          이메일 홍보 마케팅을 위한
           <br />
-          스크롤 트리거 애니메이션 효과를 적용합니다.
+          뉴스레터 제작
         </h1>
-        <p className="py-2 text-xl">사용자의 시선을 이끌고, 중요한 메시지가</p>
-        <p className="py-2 text-xl">더 강렬하게 전달되도록 설계합니다.</p>
+        <p className="py-2 text-xl">가장 기본적인 이메일 마케팅을 위한</p>
+        <p className="py-2 text-xl">디자인, 이메일 코드를 개발합니다.</p>
       </div>
       {/* 갤러리 */}
       <div className="mx-auto py-[100px] w-2/3 flex gap-4 auto-rows-max">

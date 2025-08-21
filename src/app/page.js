@@ -64,13 +64,13 @@ export default function Home() {
       id: 5,
       name: "뉴스레터, 소식지, 이메일 디자인 개발",
       imageSrc: "/images/menumain5.png",
-      link: "/",
+      link: "/output/newletter",
     },
     {
       id: 6,
       name: "2D 모션그래픽 홍보영상 애니메이션 제작",
       imageSrc: "/images/menumain6.png",
-      link: "/",
+      link: "/output/motionmv",
     },
     {
       id: 7,
