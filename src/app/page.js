@@ -1,6 +1,7 @@
 "use client";
 
 import React, { useEffect, useRef, useState } from "react";
+import { useRouter } from "next/navigation";
 import Image from "next/image";
 import Link from "next/link";
 import Sortable from "sortablejs";
@@ -27,11 +28,12 @@ const REGION_COORDS = {
 };
 
 export default function Home() {
+  const router = useRouter();
   //검색
   const [query, setQuery] = useState("");
   const onKeyDown = (e) => {
     if (e.key === "Enter") {
-      console.log("검색 실행:", query);
+      router.push(`/search?query=${encodeURIComponent(query)}`);
     }
   };
   // 메뉴 카드
@@ -146,7 +148,6 @@ export default function Home() {
           ].includes(obj.category)
       );
       const todayWeatherList = filteredList.slice(0, 72);
-      console.log(todayWeatherList);
       setWeather(todayWeatherList);
     } else {
       console.error("날씨 데이터가 없습니다.");
@@ -177,14 +178,14 @@ export default function Home() {
       <div className="py-12 text-center">
         <input
           id="search"
-          type="search"
+          type="text"
           className="p-4 w-2/3 outline-none bg-zinc-100 rounded-full border border-zinc-200 dark:text-black"
           placeholder="검색어를 입력하세요"
           value={query}
           onChange={(e) => setQuery(e.target.value)}
           onKeyDown={onKeyDown}
           role="combobox"
-          aria-expanded={open}
+          aria-expanded={true}
           aria-controls="search-suggestions"
           aria-autocomplete="list"
         />
@@ -206,6 +207,7 @@ export default function Home() {
                     src={item.imageSrc}
                     alt={item.name || "이미지"}
                     fill
+                    sizes="(max-width: 768px) 100vw, (max-width: 1200px) 50vw, 33vw"
                     className="object-cover"
                     priority
                   />
@@ -267,7 +269,6 @@ export default function Home() {
             <div className="pb-4 flex gap-6 overflow-x-scroll">
               {weather.length > 0
                 ? chunkArray(weather, 4).map((group, index) => {
-                    console.log(group);
                     return (
                       <div
                         key={index}

@@ -1,26 +1,35 @@
 import React from "react";
-
-const RightSideNav = () => {
+import Link from "next/link";
+const RightSideNav = ({ tag = [] }) => {
   return (
-    <div className="fixed top-1/2 -translate-y-1/2 left-[16px] p-4 flex flex-col gap-2 text-sm z-40 bg-zinc-100/40 rounded-lg max-lg:top-auto max-lg:bottom-0 max-lg:left-0 max-lg:translate-none max-lg:w-full max-lg:flex-row max-lg:rounded-none max-lg:rounded-t-lg max-lg:bg-zinc-50/100 max-lg:overflow-x-scroll">
-      <span className="p-3 rounded-lg bg-zinc-50 border border-zinc-200 text-center">
-        앱 홍보 다운로드 웹
+    <div className="fixed top-[10px] left-1/2 -translate-x-1/2 p-2 flex gap-2 text-xs z-40 bg-zinc-900/40 rounded-lg text-white">
+      <span className="p-1 rounded-lg bg-zinc-950/50 border border-zinc-500 text-center hover:opacity-90">
+        <Link href="/" className="flex gap-2 items-center">
+          <svg
+            width="10"
+            height="10"
+            viewBox="0 0 33 33"
+            fill="none"
+            xmlns="http://www.w3.org/2000/svg"
+            className="w-full h-full"
+          >
+            <path
+              d="M16.5014 0L0 13.7473V33H10.9982V22H22.0018V33H33V13.7473L16.5014 0Z"
+              fill="#fff"
+            />
+          </svg>
+          HOME
+        </Link>
       </span>
-      <span className="p-3 rounded-lg bg-zinc-50 border border-zinc-200 text-center">
-        앱 다운로드 페이지
-      </span>
-      <span className="p-3 rounded-lg bg-zinc-50 border border-zinc-200 text-center">
-        스크롤 트리거 애니메이션
-      </span>
-      <span className="p-3 rounded-lg bg-zinc-50 border border-zinc-200 text-center">
-        스크롤 효과 웹사이트
-      </span>
-      <span className="p-3 rounded-lg bg-zinc-50 border border-zinc-200 text-center">
-        스크롤 효과 웹사이트
-      </span>
-      <span className="p-3 rounded-lg bg-zinc-50 border border-zinc-200 text-center">
-        스크롤 효과 웹사이트
-      </span>
+      {/* 동적으로 태그 출력 */}
+      {tag.map((text, idx) => (
+        <span
+          key={idx}
+          className="p-1 rounded-lg bg-zinc-950/50 border border-zinc-500 text-center hover:opacity-90"
+        >
+          {text}
+        </span>
+      ))}
     </div>
   );
 };

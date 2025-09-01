@@ -40,7 +40,7 @@ export default function Home() {
             </h3>
             <div className="px-4">
               <button className="w-full py-6 rounded-4xl text-sm bg-linear-to-r from-emerald-200 to-emerald-400 text-slate-900 paperlogy-bold">
-                <Link href="/output/trigger/pj1">탐험하기</Link>
+                <Link href="/output/trigger/pj1">사이트 보기</Link>
               </button>
             </div>
           </div>
@@ -65,7 +65,7 @@ export default function Home() {
             </h3>
             <div className="px-4">
               <button className="w-full py-6 rounded-4xl text-sm bg-linear-to-r from-emerald-200 to-emerald-400 text-slate-900 paperlogy-bold">
-                <Link href="">탐험하기</Link>
+                <Link href="">사이트 보기</Link>
               </button>
             </div>
           </div>
@@ -90,7 +90,7 @@ export default function Home() {
             </h3>
             <div className="px-4">
               <button className="w-full py-6 rounded-4xl text-sm bg-linear-to-r from-emerald-200 to-emerald-400 text-slate-900 paperlogy-bold">
-                <Link href="">탐험하기</Link>
+                <Link href="">사이트 보기</Link>
               </button>
             </div>
           </div>

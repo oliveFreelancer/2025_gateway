@@ -1,24 +1,18 @@
-"use client";
-import { useState, useEffect } from "react";
-import { ThemeProvider } from "next-themes";
-import { usePathname } from "next/navigation";
 import "./globals.css";
-import SmoothWrapper from "@/components/SmoothWrapper";
-//components kym
-import ThemeSwitcher from "@/components/ThemeSwitcher";
+import ClientLayout from "./ClientLayout";
+
+export const metadata = {
+  title: {
+    default: "My Website",
+    template: "%s | My Website",
+  },
+  description:
+    "퍼블리셔 프리랜서 포트폴리오 샘플로 제작한 앱 다운로드 홍보 원페이지입니다. 스크롤 애니메이션 효과 구현, 작업 문의 및 협업 제안 환영합니다.",
+};
 
 export default function RootLayout({ children }) {
-  const [isClient, setIsClient] = useState(false);
-  const pathname = usePathname();
-
-  useEffect(() => {
-    setIsClient(true);
-  }, []);
-
-  const shouldSkipSmoothWrapper = pathname?.includes("pj");
-
   return (
-    <html lang="ko">
+    <html lang="ko" suppressHydrationWarning>
       <body
         className="
           min-h-screen
@@ -28,20 +22,8 @@ export default function RootLayout({ children }) {
           antialiased
           transition-colors duration-300
         "
-        // z-shortcut-listen="true"
       >
-        {isClient && (
-          <ThemeProvider attribute="class" defaultTheme="system" enableSystem>
-            {shouldSkipSmoothWrapper ? (
-              children
-            ) : (
-              <>
-                <ThemeSwitcher />
-                <SmoothWrapper>{children}</SmoothWrapper>
-              </>
-            )}
-          </ThemeProvider>
-        )}
+        <ClientLayout>{children}</ClientLayout>
       </body>
     </html>
   );

@@ -68,7 +68,7 @@ export default function ThemeSwitcher() {
           ].includes(obj.category)
       );
       const todayWeatherList = filteredList.slice(0, 72);
-      console.log(todayWeatherList);
+
       setWeather(todayWeatherList);
     } else {
       console.error("날씨 데이터가 없습니다.");
@@ -360,7 +360,6 @@ export default function ThemeSwitcher() {
               <div className="pb-4 flex gap-6 overflow-x-scroll">
                 {weather.length > 0
                   ? chunkArray(weather, 4).map((group, index) => {
-                      console.log(group);
                       return (
                         <div
                           key={index}

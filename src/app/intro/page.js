@@ -388,7 +388,7 @@ export default function Home() {
                   웹사이트, 홈페이지, 홍보페이지, 랜딩페이지 UXUI 디자인 제작
                 </h3>
                 <button className="w-full py-6 rounded-4xl text-sm bg-linear-to-r from-emerald-200 to-emerald-400 text-slate-900 paperlogy-bold">
-                  탐험하기
+                  사이트 보기
                 </button>
               </div>
             </div>
@@ -403,7 +403,7 @@ export default function Home() {
                   웹사이트, 홈페이지, 홍보페이지, 랜딩페이지 UXUI 프론트 구현
                 </h3>
                 <button className="w-full py-6 rounded-4xl text-sm bg-linear-to-r from-emerald-200 to-emerald-400 text-slate-900 paperlogy-bold">
-                  탐험하기
+                  사이트 보기
                 </button>
               </div>
             </div>
@@ -418,7 +418,7 @@ export default function Home() {
                   소식지, 뉴스레터, 이메일 디자인·개발
                 </h3>
                 <button className="w-full py-6 rounded-4xl text-sm bg-linear-to-r from-emerald-200 to-emerald-400 text-slate-900 paperlogy-bold">
-                  탐험하기
+                  사이트 보기
                 </button>
               </div>
             </div>
@@ -435,7 +435,7 @@ export default function Home() {
                   제안서 계획안 PPT 디자인 제작
                 </h3>
                 <button className="w-full py-6 rounded-4xl text-sm bg-linear-to-r from-emerald-200 to-emerald-400 text-slate-900 paperlogy-bold">
-                  탐험하기
+                  사이트 보기
                 </button>
               </div>
             </div>
@@ -450,7 +450,7 @@ export default function Home() {
                   2D 모션그래픽 홍보영상 애니메이션 제작
                 </h3>
                 <button className="w-full py-6 rounded-4xl text-sm bg-linear-to-r from-emerald-200 to-emerald-400 text-slate-900 paperlogy-bold">
-                  탐험하기
+                  사이트 보기
                 </button>
               </div>
             </div>

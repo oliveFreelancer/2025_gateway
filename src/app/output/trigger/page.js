@@ -20,19 +20,21 @@ export default function Home() {
       </div>
       {/* 갤러리 */}
       <div className="mx-auto py-[100px] w-2/3 flex gap-4 auto-rows-max">
-        <div className="flex-1 transition-all duration-300 hover:basis-[20%] rounded-2xl shadow-xl/10">
+        <div className="basis-1/3 flex-1 transition-all duration-300 hover:basis-[20%] rounded-2xl shadow-xl/10">
           <div className="relative w-full h-[292px] overflow-hidden rounded-2xl">
-            <Image
-              src="/images/pj_thumb1.png"
-              alt="이미지"
-              width={0} // 동적으로 조정
-              height={0}
-              sizes="100%"
-              className="absolute w-full h-auto"
-            />
-            <p className="absolute top-6 left-4 p-4 rounded-xl bg-emerald-500">
-              UXUI DESIGN
-            </p>
+            <Link href="/description/trigger_pj1/">
+              <Image
+                src="/images/pj_thumb1.png"
+                alt="이미지"
+                width={0} // 동적으로 조정
+                height={0}
+                sizes="100%"
+                className="absolute w-full h-auto"
+              />
+              <p className="absolute top-6 left-4 p-4 rounded-xl bg-emerald-500">
+                UXUI DESIGN
+              </p>
+            </Link>
           </div>
           <div className="py-4 flex flex-col gap-4">
             <h3 className="text-2xl paperlogy-bold text-center">
@@ -40,57 +42,7 @@ export default function Home() {
             </h3>
             <div className="px-4">
               <button className="w-full py-6 rounded-4xl text-sm bg-linear-to-r from-emerald-200 to-emerald-400 text-slate-900 paperlogy-bold">
-                <Link href="/output/trigger/pj1">탐험하기</Link>
-              </button>
-            </div>
-          </div>
-        </div>
-        <div className="flex-1 transition-all duration-300 hover:basis-[20%] rounded-2xl shadow-xl/10">
-          <div className="relative w-full h-[292px] overflow-hidden rounded-2xl">
-            <Image
-              src="/images/pj_thumb1.png"
-              alt="이미지"
-              width={0} // 동적으로 조정
-              height={0}
-              sizes="100%"
-              className="absolute w-full h-auto"
-            />
-            <p className="absolute top-6 left-4 p-4 rounded-xl bg-emerald-500">
-              UXUI DESIGN
-            </p>
-          </div>
-          <div className="py-4 flex flex-col gap-4">
-            <h3 className="text-2xl paperlogy-bold text-center">
-              앱 다운로드 홍보페이지
-            </h3>
-            <div className="px-4">
-              <button className="w-full py-6 rounded-4xl text-sm bg-linear-to-r from-emerald-200 to-emerald-400 text-slate-900 paperlogy-bold">
-                <Link href="">탐험하기</Link>
-              </button>
-            </div>
-          </div>
-        </div>
-        <div className="flex-1 transition-all duration-300 hover:basis-[20%] rounded-2xl shadow-xl/10">
-          <div className="relative w-full h-[292px] overflow-hidden rounded-2xl">
-            <Image
-              src="/images/pj_thumb1.png"
-              alt="이미지"
-              width={0} // 동적으로 조정
-              height={0}
-              sizes="100%"
-              className="absolute w-full h-auto"
-            />
-            <p className="absolute top-6 left-4 p-4 rounded-xl bg-emerald-500">
-              UXUI DESIGN
-            </p>
-          </div>
-          <div className="py-4 flex flex-col gap-4">
-            <h3 className="text-2xl paperlogy-bold text-center">
-              앱 다운로드 홍보페이지
-            </h3>
-            <div className="px-4">
-              <button className="w-full py-6 rounded-4xl text-sm bg-linear-to-r from-emerald-200 to-emerald-400 text-slate-900 paperlogy-bold">
-                <Link href="">탐험하기</Link>
+                <Link href="/output/trigger/pj1">사이트 보기</Link>
               </button>
             </div>
           </div>
