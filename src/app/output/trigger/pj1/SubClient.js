@@ -1,4 +1,5 @@
 "use client";
+
 import { useLayoutEffect, useRef } from "react";
 import Image from "next/image";
 import gsap from "gsap";
@@ -26,8 +27,6 @@ const SubClient = () => {
 
   //애니메이션
   useLayoutEffect(() => {
-    if (!maskRef.current) return;
-
     gsap.to(animation1Ref.current, {
       scale: 0.6,
       duration: 1.2,
@@ -121,31 +120,32 @@ const SubClient = () => {
       ease: "power2.in",
     });
 
-    gsap.to(
-      { size: 50 },
-      {
+    const maskEl = maskRef.current;
+    if (!maskEl) return;
+    const state = { size: 50 };
+
+    const ctx = gsap.context(() => {
+      gsap.to(state, {
         size: 300,
         scrollTrigger: {
-          trigger: maskRef.current,
+          trigger: maskEl,
           start: "top top+=200",
           end: "bottom center",
           scrub: 0.5,
           // markers: true,
-          onLeave: () => {
-            gsap.set(maskRef, { display: "none" });
-          },
-          onEnterBack: () => {
-            gsap.set(maskRef, { display: "block" });
-          },
+          onLeave: () => gsap.set(maskEl, { display: "none" }),
+          onEnterBack: () => gsap.set(maskEl, { display: "block" }),
         },
-        onUpdate: function () {
-          const size = this.targets()[0].size;
-          const value = `${size}% ${size}%`;
-          maskRef.current.style.maskSize = value;
-          maskRef.current.style.webkitMaskSize = value;
+        onUpdate: () => {
+          if (!maskEl || !maskEl.isConnected) return; // ✅ 언마운트/분리 가드
+          const value = `${state.size}% ${state.size}%`;
+          maskEl.style.maskSize = value;
+          maskEl.style.webkitMaskSize = value;
         },
-      }
-    );
+      });
+    }, maskEl); // 이 엘리먼트 범위로 스코프
+
+    return () => ctx.revert();
 
     gsap.to(animation9Ref.current, {
       scale: 7,

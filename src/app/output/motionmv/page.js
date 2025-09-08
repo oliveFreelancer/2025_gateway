@@ -2,11 +2,6 @@
 
 import Image from "next/image";
 import Link from "next/link";
-import gsap from "gsap";
-import { ScrollTrigger } from "gsap/ScrollTrigger";
-gsap.registerPlugin(ScrollTrigger);
-//components kym
-import Footer from "@/components/Footer";
 
 export default function Home() {
   return (
@@ -18,8 +13,10 @@ export default function Home() {
           <br />
           2D 모션그래픽 홍보 영상 제작
         </h1>
-        <p className="py-2 text-xl">사용자의 시선을 이끌고, 중요한 메시지가</p>
-        <p className="py-2 text-xl">더 강렬하게 전달되도록 설계합니다.</p>
+        <p className="py-2 text-xl">
+          사용자의 시선을 이끌고, 중요한 메시지가
+          <br />더 강렬하게 전달되도록 설계합니다.
+        </p>
       </div>
       {/* 갤러리 */}
       <div className="mx-auto py-[100px] w-2/3 flex gap-4 auto-rows-max">

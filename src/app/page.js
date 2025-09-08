@@ -64,24 +64,30 @@ export default function Home() {
     },
     {
       id: 5,
+      name: "이벤트 및 팝업 페이지",
+      imageSrc: "/images/menumain2.png",
+      link: "/output/popup",
+    },
+    {
+      id: 6,
       name: "뉴스레터, 소식지, 이메일 디자인 개발",
       imageSrc: "/images/menumain5.png",
       link: "/output/newletter",
     },
     {
-      id: 6,
+      id: 7,
       name: "2D 모션그래픽 홍보영상 애니메이션 제작",
       imageSrc: "/images/menumain6.png",
       link: "/output/motionmv",
     },
     {
-      id: 7,
+      id: 8,
       name: "모든 프로젝트 보기",
       imageSrc: "/images/menumain8.png",
       link: "/output",
     },
     {
-      id: 8,
+      id: 9,
       name: "문의하기",
       imageSrc: "/images/menumain7.png",
       link: "/",

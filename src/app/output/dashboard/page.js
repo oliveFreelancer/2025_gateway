@@ -2,9 +2,6 @@
 
 import Image from "next/image";
 import Link from "next/link";
-import gsap from "gsap";
-import { ScrollTrigger } from "gsap/ScrollTrigger";
-gsap.registerPlugin(ScrollTrigger);
 
 export default function Home() {
   return (
@@ -16,8 +13,11 @@ export default function Home() {
           <br />
           대시보드 웹 퍼블리싱
         </h1>
-        <p className="py-2 text-xl">데이터의 흐름을 이해하고,</p>
-        <p className="py-2 text-xl">사용자가 머무르는 화면을 만듭니다.</p>
+        <p className="py-2 text-xl">
+          데이터의 흐름을 이해하고
+          <br />
+          사용자가 머무르는 화면을 만듭니다.
+        </p>
       </div>
       {/* 갤러리 */}
       <div className="mx-auto py-[100px] w-2/3 flex gap-4 auto-rows-max">

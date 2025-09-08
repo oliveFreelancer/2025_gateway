@@ -1,9 +1,6 @@
 "use client";
 import Image from "next/image";
 import Link from "next/link";
-import gsap from "gsap";
-import { ScrollTrigger } from "gsap/ScrollTrigger";
-gsap.registerPlugin(ScrollTrigger);
 
 export default function Home() {
   return (
@@ -15,8 +12,11 @@ export default function Home() {
           <br />
           뉴스레터 제작
         </h1>
-        <p className="py-2 text-xl">가장 기본적인 이메일 마케팅을 위한</p>
-        <p className="py-2 text-xl">디자인, 이메일 코드를 개발합니다.</p>
+        <p className="py-2 text-xl">
+          가장 기본적인 이메일 마케팅을 위한
+          <br />
+          디자인, 이메일 코드를 개발합니다.
+        </p>
       </div>
       {/* 갤러리 */}
       <div className="mx-auto py-[100px] w-2/3 flex gap-4 auto-rows-max">

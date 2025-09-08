@@ -9,7 +9,7 @@ import SubClient from "./SubClient"; // 클라이언트 컴포넌트
 
 export default function Home() {
   return (
-    <main className="py-12">
+    <main className="py-12 bg-white text-black">
       <SubClient />
     </main>
   );

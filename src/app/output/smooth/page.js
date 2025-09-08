@@ -1,9 +1,6 @@
 "use client";
 import Image from "next/image";
 import Link from "next/link";
-import gsap from "gsap";
-import { ScrollTrigger } from "gsap/ScrollTrigger";
-gsap.registerPlugin(ScrollTrigger);
 
 export default function Home() {
   return (
@@ -15,9 +12,9 @@ export default function Home() {
           <br />
           매끄럽고 감각적인 UX·UI 제작합니다.
         </h1>
-        <p className="py-2 text-xl">감각적인 움직임을 더해,</p>
         <p className="py-2 text-xl">
-          한 번 방문한 사용자가 기억하는 웹사이트를 만듭니다.
+          감각적인 움직임을 더해
+          <br />한 번 방문한 사용자가 기억하는 웹사이트를 만듭니다.
         </p>
       </div>
       {/* 갤러리 */}
